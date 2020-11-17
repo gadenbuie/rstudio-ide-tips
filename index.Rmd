@@ -118,6 +118,7 @@ xaringanExtra::use_xaringan_extra(c(
   "tile_view",
   "tachyons",
   "editable",
+  "broadcast",
   # "animate",
   "panelset"
 ))
