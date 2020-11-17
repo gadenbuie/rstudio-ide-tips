@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>RStudio Pro Tips</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Garrick Aden-Buie" />
+    <meta name="author" content="Mario Ferrini" />
+    <meta name="author" content="Greg Wilson" />
+    <meta name="date" content="2020-11-17" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view/tile-view.js"></script>
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x7a7af6dfdee48908636d084af109b20","expires":14}</script>
+    <script src="libs/himalaya/himalaya.js"></script>
+    <script src="libs/js-cookie/js.cookie.js"></script>
+    <link href="libs/editable/editable.css" rel="stylesheet" />
+    <script src="libs/editable/editable.js"></script>
+    <link href="libs/xaringanExtra-extra-styles/xaringanExtra-extra-styles.css" rel="stylesheet" />
+    <link href="libs/countdown/countdown.css" rel="stylesheet" />
+    <script src="libs/countdown/countdown.js"></script>
+    <link rel="stylesheet" href="xaringan-rstudio.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+name: title
+class: left bottom hide-count
+
+&lt;!-- Slide Extras --&gt;
+
+
+
+
+
+
+&lt;!-- Title Slide --&gt;
+&lt;div class="talk-logo"&gt;&lt;/div&gt;
+
+.talk-meta[
+.talk-title[
+# RStudio Pro Tips
+
+## .blue-light[Mind-Meld with the RStudio IDE]
+]
+
+&lt;div class="talk-author"&gt;Garrick Aden-Buie &amp;middot; Mario Ferrini &amp;middot; Greg Wilson&lt;/div&gt;
+&lt;div class="talk-institute"&gt;RStudio, PBC&lt;/div&gt;
+&lt;div class="talk-date"&gt;November 17, 2020&lt;/div&gt;
+]
+
+
+&lt;style type="text/css"&gt;
+/* Define title slide image or logo here */
+.talk-logo {
+  width: 200px;
+  height: 750px;
+  position: absolute;
+  top: 6%;
+  right: 4%;
+  background-image: url('https://rstudio.com/wp-content/uploads/2018/10/RStudio-Logo-Gray.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: contain;
+}
+.talk-title h1 {
+  margin-bottom: 0;
+}
+.talk-author {
+  font-weight: bold;
+  color: var(--blue);
+  margin-bottom: 0;
+}
+.talk-institute {
+  margin-top: 0.5em;
+}
+.talk-date {
+  margin-top: 1em;
+}
+kbd, .kbd {
+  padding: 0.1em 0.6em;
+  border: 1px solid var(--text-lighter);
+  font-family: var(--font-monospace);
+  background-color: var(--text-lighter);
+  color: var(--text);
+  -webkit-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2), 0 0 0 1px #fff inset;
+  box-shadow: 0 1px 0px 2px rgba(0, 0, 0, 0.2), 0 0 0 1px #fff inset;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  display: inline-block;
+  margin: 0 0.1em;
+  line-height: 1.4;
+  white-space: nowrap;
+  font-size: 1em !important;
+}
+click {
+  background-image: url('assets/img/click.svg');
+  background-size: contain;
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: bottom;
+}
+&lt;/style&gt;
+
+---
+class: middle
+
+.f2.zilla[
+The test of the machine is the satisfaction it gives you. There isn't any other test. .hl-zilla.blue-light[If the machine produces tranquility it's right.] If it disturbs you it's wrong until either the machine or your mind is changed.
+]
+
+.right.i.f4.blue[—Zen and the Art of Motorcycle Maintenance]
+
+---
+layout: true
+class: center
+
+&lt;h1 style="padding: 0.5em 1em;" class="mb2"&gt;Three Strategies for Satisfaction&lt;/h1&gt;
+
+
+
+
+---
+
+.flex.flex-column.items-center[
+.h-25.ph4.flex.items-center.justify-center.order-3.bg-blue-washed.blue.f3[
+.b[Discover] what the IDE can do for you
+]
+]
+
+---
+
+.flex.flex-column.items-center[
+.h-25.ph4.flex.items-center.justify-center.order-2.bg-green-washed.green-dark.f3[
+.b[Mold] the tool to your workflow
+]
+.h-25.ph4.flex.items-center.justify-center.order-3.bg-blue-washed.blue.f3[
+.b[Discover] what the IDE can do for you
+]
+]
+
+---
+
+.flex.flex-column.items-center[
+.h-25.ph4.flex.items-center.justify-center.order-1.bg-orange-washed.orange.f3[
+.b[Adapt] your workflow
+]
+.h-25.ph4.flex.items-center.justify-center.order-2.bg-green-washed.green-dark.f3[
+.b[Mold] the tool to your workflow
+]
+.h-25.ph4.flex.items-center.justify-center.order-3.bg-blue-washed.blue.f3[
+.b[Discover] what the IDE can do for you
+]
+]
+
+---
+layout: false
+class: middle
+
+# Set Up
+
+.f3[
+💼 .f4.code[usethis::use_course(".can-edit.key-course-link[gadenbuie/rstudio-ide-tips-demo]")]
+
+🕸 https://.can-edit.key-slides-link[shortlink]
+
+🤔 .b[What feature makes RStudio _your_ IDE?]
+]
+
+---
+
+# What makes RStudio .green[your] IDE?
+
+.can-edit[
+- answers...
+]
+
+---
+
+# Quick Poll
+
+.flex.f3[
+.w-third.tc[
+&lt;img src="assets/img/logo-apple.svg" height = "250px" /&gt;
+
+.can-edit[👤]
+]
+.w-third.tc[
+&lt;img src="assets/img/logo-windows.svg" height = "250px" /&gt;
+
+.can-edit[👤]
+]
+.w-third.tc[
+&lt;img src="assets/img/logo-linux.svg" height = "250px" /&gt;
+
+.can-edit[👤]
+]
+]
+
+---
+
+# .green[Set Up Your Workspace]
+
+- What panes are available?
+
+- Where do you put them?
+
+- Drag to resize
+
+- Pane Layout
+
+- Half Screen
+
+- Full Screen
+
+&lt;img class="absolute bottom-2 right-2 w-50 shadow-4 ba b--silver bw1" src="assets/img/workspace.png"&gt;
+
+---
+
+# Move Between Panes
+
+.w-50.fl[
+&lt;img src="index_files/figure-html/unnamed-chunk-3-1.png" width="100%" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-4-1.png" width="100%" /&gt;
+]
+
+--
+
+.w-50.fl[
+&lt;img src="index_files/figure-html/unnamed-chunk-5-1.png" width="100%" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-6-1.png" width="100%" /&gt;
+]
+
+---
+layout: true
+
+# Zoom To Pane
+
+.w-50.fl[
+Run this code and then press
+
+&lt;kbd&gt;Ctrl&lt;/kbd&gt; + &lt;kbd&gt;Shift&lt;/kbd&gt; + &lt;kbd&gt;1&lt;/kbd&gt;
+
+
+```r
+library(dplyr)
+View(starwars)
+```
+]
+
+.w-50.fr[
+&lt;img src="index_files/figure-html/unnamed-chunk-8-1.png" width="100%" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-9-1.png" width="100%" /&gt;
+]
+
+---
+
+&lt;!-- First Slide --&gt;
+
+---
+
+.w-50.fl[
+.blue.zilla.f4[Pipe into View()]
+
+
+```r
+starwars %&gt;% 
+  filter(species == "human") %&gt;% 
+  View()
+```
+]
+
+---
+
+.w-50.fl[
+.green-dark.zilla.f4[Give your viewer a name]
+
+
+```r
+starwars %&gt;% 
+  filter(species == "human") %&gt;% 
+* View("humans")
+```
+]
+
+---
+layout: false
+
+- `Ctrl + .` to jump to a file
+
+- Back arrows
+
+- F2 to jump to function definition
+
+- F1 to jump to function help
+
+---
+
+- Add section labels using `Ctrl + R`
+
+- Browse section labels
+
+---
+
+- Run scripts as background jobs
+
+    - Default settings
+    - Return results to environment
+    - Watch progress in the console
+    - Use objects from global env
+    
+---
+
+- Restart your R Session
+
+    - `Command + Shift + F10`
+    - `Ctrl + Shift + F10`
+    
+- Run code up to here
+
+    - R Script `Cmd/Ctrl + Opt/Alt + B` 
+    - Rmd `Cmd/Ctrl + Opt/Alt + P`
+
+- Always start with a blank slate
+    
+    - `usethis::use_blank_slate()`
+    - https://rstats.wtf/save-source.html
+    - Go into settings to show this ...
+    
+---
+
+# Use Projects
+
+- [Project-oriented workflow](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/), Jenny Bryan
+
+- [Why should I use the `here` package](https://malco.io/2018/11/05/why-should-i-use-the-here-package-when-i-m-already-using-projects/), Malcom Barrett
+
+- [Use Alfred to launch projects](https://twitter.com/hadleywickham/status/968624630276804608)
+
+---
+
+# Poke around settings
+
+.w-50.fl[
+- Pane Layout
+
+- Code &gt; Display
+
+- Appearance
+
+    - Fonts: [hasklig](https://github.com/i-tu/Hasklig/)
+    - Themes
+]
+    
+.fr[
+#### Hasklig
+![Hasklig Sample](https://raw.githubusercontent.com/i-tu/Hasklig/master/hasklig_example.png)
+
+#### Source Code Pro
+![Source Code Pro Sample](https://raw.githubusercontent.com/i-tu/Hasklig/master/SourceCodeProSample.png)
+]
+
+---
+
+# Themes
+
+[garrickadenbuie.com/project/rsthemes/](https://www.garrickadenbuie.com/project/rsthemes/)
+
+
+```r
+remotes::install_github("gadenbuie/rsthemes", dependencies = TRUE)
+
+rsthemes::install_rsthemes()
+
+rsthemes::try_rsthemes()
+```
+
+---
+
+# rsthemes addins
+
+- Toggle Dark/Light
+
+- Auto choose dark/light
+
+- Choose next favorite
+
+---
+
+# Assign shortcuts to addins
+
+&lt;kbd&gt;Ctrl&lt;/kbd&gt; + &lt;kbd&gt;Option&lt;/kbd&gt; + &lt;kbd&gt;D&lt;/kbd&gt;
+
+&lt;kbd&gt;Ctrl&lt;/kbd&gt; + &lt;kbd&gt;Option&lt;/kbd&gt; + &lt;kbd&gt;N&lt;/kbd&gt;
+
+---
+
+# Keyboard Shortcuts
+
+- Tools &gt; Keyboard Shortcuts Help
+
+- [RStudio IDE Cheat Sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/rstudio-ide.pdf)
+
+- Take 3 minutes and find a new shortcut to try this week
+
+<div class="countdown" id="timer_5fb44f01" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+
+# Command Palette
+
+New in RStudio 1.4 along with a few other awesome features
+
+- command palette
+- rainbow parens
+- visual markdown
+- new source column
+
+[RStudio Preview](https://rstudio.com/products/rstudio/download/preview/)
+
+---
+
+# Code Style
+
+Take an example that needs styling...
+
+- [styler](https://www.notion.so/styler-8121522005bb4917ba65c654a22799b7)
+
+- Use `identity()` or `I()` to walk through pipe steps
+
+- Realize code is out of place and move up/down to reorganize
+
+- Add new lines and fix indentation: &lt;kbd&gt;Ctrl&lt;/kbd&gt; + &lt;kbd&gt;I&lt;/kbd&gt;
+
+- Let your code breathe vertically! Change order of selection in a `select()`
+    - Use multiple cursors by &lt;kbd&gt;Cmd&lt;/kbd&gt; + &lt;kbd&gt;Opt&lt;/kbd&gt; + &lt;click&gt;&lt;/click&gt;
+
+???
+
+I use `Ctrl + Shift + S` for style selection and `Ctrl + Shift + Cmd + S` for style file
+
+---
+
+# Multiple cursors
+
+.mb5[
+Click to create new cursors .fr.tr.lh-copy[&lt;kbd&gt;Cmd/Ctrl&lt;/kbd&gt; + &lt;kbd&gt;Opt/Alt&lt;/kbd&gt; + &lt;click&gt;&lt;/click&gt;]
+]
+ 
+.mb5[ 
+Click and drag to select/create new cursors .fr[&lt;kbd&gt;Opt/Alt&lt;/kbd&gt; + &lt;click&gt;&lt;/click&gt; and drag]
+]
+
+.mb5[
+Create new cursors with the keyboard .fr[&lt;kbd&gt;Cmd/Ctrl&lt;/kbd&gt; + &lt;kbd&gt;Opt/Alt&lt;/kbd&gt; + &lt;click&gt;&lt;/click&gt;]
+]
+
+.mb5[
+Create new cursors from selection .fr[&lt;kbd&gt;Find and Add Next&lt;/kbd&gt; &lt;kbd&gt;Find and Select All&lt;/kbd&gt;]
+]
+
+???
+
+- Find all - `Cmd + Alt + F`
+
+- Find and Add Next - `Cmd + D`
+
+---
+
+# Align Arguments and Assignment
+
+If code is more vertical, alignment is easier.
+
+- Align blocks of similar arguments or names or anytime there's repetition
+
+- Alignment makes it easier to scan for problems
+
+- [AlignAssign](https://github.com/seasmith/AlignAssign)
+
+---
+
+# Addins
+
+[addinslist](https://github.com/daattali/addinslist) is a great resource
+
+#### Some Favorites
+
+- [remedy](https://github.com/ThinkR-open/remedy)
+
+- [datapasta](https://github.com/MilesMcBain/datapasta)
+
+- [gistfo](https://github.com/MilesMcBain/gistfo)
+
+- [ermoji](https://github.com/gadenbuie/ermoji)
+
+#### Make Your Own
+
+- [shrtcts](https://pkg.garrickadenbuie/shrtcts)
+
+---
+
+# Snippets
+
+
+
+---
+
+# Infinite Moon Reader
+
+Use **Infinite Moon Reader** to automatically recompile an R Markdown document
+
+demo: `docs/try/infinite_moon_reader.Rmd`
+
+---
+
+# Clean Tuition
+
+demo: `R/clean_tuition.R`
+
+- Review techniques to re-style the code, figure out what's going on
+
+- Make a function to `tidy_tuition()`
+    - Use reload function shortcut
+    - Use `browser()`
+    - Insert roxygen skeleton
+    - Rename in scope
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "atom-one-light",
+"highlightLines": true,
+"ratio": "16:9",
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

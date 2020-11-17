@@ -1,0 +1,629 @@
+---
+title: "RStudio Pro Tips"
+subtitle: "Mind-Meld with the RStudio IDE"
+author: 
+  - Garrick Aden-Buie
+  - Mario Ferrini
+  - Greg Wilson
+institute: "RStudio, PBC"
+date: '`r strftime(Sys.time(), "%B %d, %Y")`'
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: xaringan-rstudio.css
+    seal: false
+    anchor_sections: false
+    nature:
+      titleSlideClass: ["bottom", "left"]
+      slideNumberFormat: "%current%"
+      highlightStyle: atom-one-light
+      highlightLines: true
+      ratio: 16:9
+      countIncrementalSlides: true
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE, width = 70)
+source("R/ggkeyboard-highlight-keys.R")
+ragg_png = function(..., res = 192) {
+  ragg::agg_png(..., res = res, units = "in")
+}
+knitr::opts_chunk$set(
+  fig.width=9, fig.height=3.5, fig.retina=3,
+  out.width = "100%",
+  cache = FALSE,
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  fig.show = TRUE,
+  hiline = TRUE,
+  # dev = "png", dev.args = list(type = "cairo-png")
+  dev = "ragg_png",
+  fig.ext = "png"
+)
+```
+
+name: title
+class: left bottom hide-count
+
+<!-- Slide Extras -->
+
+```{r xaringanthemer, include=FALSE}
+xaringanthemer::style_duo_accent(
+  primary_color = "#4D8DC9",
+  secondary_color = "#A4C689",
+  header_font_google = xaringanthemer::google_font("Zilla Slab"),
+  base_font_size = "24px",
+  padding = "1rem 3rem 2rem 3rem",
+  text_color = "#404040",
+  link_color = "#447099",
+  text_bold_color = "#E7553C",
+  blockquote_left_border_color = "var(--secondary)",
+  table_row_even_background_color = "var(--gray-light)",
+  # code_highlight_color = "#FFFBB1",
+  code_highlight_color = NULL,
+  inverse_background_color = "#447099",
+  inverse_text_color = "#F8F8F8",
+  inverse_header_color = "#FFFFFF",
+  colors = c(
+    blue = "#4D8DC9",
+    gray = "#404040",
+    "gray-light" = "#F8F8F8",
+    white = "#FFFFFF",
+    orange = "#E7553C",
+    "gray-logo" = "#4D4D4D",
+    "blue-dark" = "#447099",
+    "blue-light" = "#75AADB",
+    green = "#A4C689",
+    "green-dark" = "#69995D",
+    yellow = "#FDBE4B",
+    pink = "#D260A4",
+    "blue-washed" = "#F0F5FA",
+    "green-washed" = "#F4F8F1",
+    "yellow-washed" = "#FFF1D6",
+    "orange-washed" = "#FDEFED",
+    "pink-washed" = "#FBEFF6"
+  ),
+  extra_fonts = list(
+    xaringanthemer::google_font("Zilla Slab Highlight", "700")
+  ),
+  extra_css = list(
+    ".hl-zilla" = list(
+      "font-family" = "Zilla Slab Highlight",
+      "font-weight" = 700
+    ),
+    ".zilla" = list("font-family" = "Zilla Slab"),
+    ".remark-slide h1, .remark-slide h2, .remark-slide h3, .remark-slide h4" = list(
+      "margin-top" = 0,
+      "margin-bottom" = "0.5em"
+    ),
+    "blockquote" = list("margin-left" = 0),
+    "::selection" = list("background-color" = "rgba(85, 235, 188, 0.6)"),
+    ".fullscreen" = list(
+      padding = 0,
+      height = "100%",
+      width = "100%"
+    ),
+    ".hide-count .remark-slide-number" = list(display = "none"),
+    ".remark-slide-content a" = list("border-bottom" = "2px dashed var(--blue-light)"),
+    ".remark-slide-content a:hover" = list("border-bottom" = "2px solid var(--blue-light)")
+  ),
+  outfile = "xaringan-rstudio.css"
+)
+```
+
+
+```{r xaringan-extras, echo=FALSE, results="asis"}
+xaringanExtra::use_xaringan_extra(c(
+  "tile_view",
+  "tachyons",
+  "editable",
+  # "animate",
+  "panelset"
+))
+xaringanExtra::use_extra_styles(hover_code_line = FALSE, mute_unhighlighted_code = TRUE)
+```
+
+<!-- Title Slide -->
+<div class="talk-logo"></div>
+
+.talk-meta[
+.talk-title[
+# `r rmarkdown::metadata$title`
+
+## .blue-light[`r rmarkdown::metadata$subtitle`]
+]
+
+<div class="talk-author">`r paste(rmarkdown::metadata$author, collapse = " &middot; ")`</div>
+<div class="talk-institute">`r paste(rmarkdown::metadata$institute, collapse = ", ")`</div>
+<div class="talk-date">`r knitr::knit(text = rmarkdown::metadata$date)`</div>
+]
+
+
+```{css echo=FALSE}
+/* Define title slide image or logo here */
+.talk-logo {
+  width: 200px;
+  height: 750px;
+  position: absolute;
+  top: 6%;
+  right: 4%;
+  background-image: url('https://rstudio.com/wp-content/uploads/2018/10/RStudio-Logo-Gray.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: contain;
+}
+.talk-title h1 {
+  margin-bottom: 0;
+}
+.talk-author {
+  font-weight: bold;
+  color: var(--blue);
+  margin-bottom: 0;
+}
+.talk-institute {
+  margin-top: 0.5em;
+}
+.talk-date {
+  margin-top: 1em;
+}
+kbd, .kbd {
+  padding: 0.1em 0.6em;
+  border: 1px solid var(--text-lighter);
+  font-family: var(--font-monospace);
+  background-color: var(--text-lighter);
+  color: var(--text);
+  -webkit-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2), 0 0 0 1px #fff inset;
+  box-shadow: 0 1px 0px 2px rgba(0, 0, 0, 0.2), 0 0 0 1px #fff inset;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  display: inline-block;
+  margin: 0 0.1em;
+  line-height: 1.4;
+  white-space: nowrap;
+  font-size: 1em !important;
+}
+click {
+  background-image: url('assets/img/click.svg');
+  background-size: contain;
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: bottom;
+}
+```
+
+---
+class: middle
+
+.f2.zilla[
+The test of the machine is the satisfaction it gives you. There isn't any other test. .hl-zilla.blue-light[If the machine produces tranquility it's right.] If it disturbs you it's wrong until either the machine or your mind is changed.
+]
+
+.right.i.f4.blue[—Zen and the Art of Motorcycle Maintenance]
+
+---
+layout: true
+class: center
+
+<h1 style="padding: 0.5em 1em;" class="mb2">Three Strategies for Satisfaction</h1>
+
+```{r echo=FALSE}
+one <- ".b[Discover] what the IDE can do for you"
+two <- ".b[Mold] the tool to your workflow"
+three <- ".b[Adapt] your workflow"
+```
+
+
+---
+
+.flex.flex-column.items-center[
+.h-25.ph4.flex.items-center.justify-center.order-3.bg-blue-washed.blue.f3[
+`r one`
+]
+]
+
+---
+
+.flex.flex-column.items-center[
+.h-25.ph4.flex.items-center.justify-center.order-2.bg-green-washed.green-dark.f3[
+`r two`
+]
+.h-25.ph4.flex.items-center.justify-center.order-3.bg-blue-washed.blue.f3[
+`r one`
+]
+]
+
+---
+
+.flex.flex-column.items-center[
+.h-25.ph4.flex.items-center.justify-center.order-1.bg-orange-washed.orange.f3[
+`r three`
+]
+.h-25.ph4.flex.items-center.justify-center.order-2.bg-green-washed.green-dark.f3[
+`r two`
+]
+.h-25.ph4.flex.items-center.justify-center.order-3.bg-blue-washed.blue.f3[
+`r one`
+]
+]
+
+---
+layout: false
+class: middle
+
+# Set Up
+
+.f3[
+`r emo::ji("briefcase")` .f4.code[usethis::use_course(".can-edit.key-course-link[gadenbuie/rstudio-ide-tips-demo]")]
+
+`r emo::ji("web")` https://.can-edit.key-slides-link[shortlink]
+
+`r emo::ji("thinking")` .b[What feature makes RStudio _your_ IDE?]
+]
+
+---
+
+# What makes RStudio .green[your] IDE?
+
+.can-edit[
+- answers...
+]
+
+---
+
+# Quick Poll
+
+.flex.f3[
+.w-third.tc[
+<img src="assets/img/logo-apple.svg" height = "250px" />
+
+.can-edit[`r emo::ji("bust in silhouette")`]
+]
+.w-third.tc[
+<img src="assets/img/logo-windows.svg" height = "250px" />
+
+.can-edit[`r emo::ji("bust in silhouette")`]
+]
+.w-third.tc[
+<img src="assets/img/logo-linux.svg" height = "250px" />
+
+.can-edit[`r emo::ji("bust in silhouette")`]
+]
+]
+
+---
+
+# .green[Set Up Your Workspace]
+
+- What panes are available?
+
+- Where do you put them?
+
+- Drag to resize
+
+- Pane Layout
+
+- Half Screen
+
+- Full Screen
+
+<img class="absolute bottom-2 right-2 w-50 shadow-4 ba b--silver bw1" src="assets/img/workspace.png">
+
+---
+
+# Move Between Panes
+
+.w-50.fl[
+```{r echo=FALSE}
+highlight_keys_mac(c("Ctrl", "1"), "Focus Source Code")
+```
+```{r echo=FALSE}
+highlight_keys_win(c("Ctrl Left", "1"), "Focus Source Code")
+```
+]
+
+--
+
+.w-50.fl[
+```{r echo=FALSE}
+highlight_keys_mac(c("Ctrl", "2"), "Focus Console")
+```
+```{r echo=FALSE}
+highlight_keys_win(c("Ctrl Left", "2"), "Focus Console")
+```
+]
+
+---
+layout: true
+
+# Zoom To Pane
+
+.w-50.fl[
+Run this code and then press
+
+<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>1</kbd>
+
+```{r eval=FALSE}
+library(dplyr)
+View(starwars)
+```
+]
+
+.w-50.fr[
+```{r echo=FALSE}
+highlight_keys_mac(c("Ctrl", "Shift Left", "1"), "Zoom to Source")
+```
+```{r echo=FALSE}
+highlight_keys_win(c("Ctrl Left", "Shift Left", "1"), "Zoom to Source")
+```
+]
+
+---
+
+<!-- First Slide -->
+
+---
+
+.w-50.fl[
+.blue.zilla.f4[Pipe into View()]
+
+```{r eval=FALSE}
+starwars %>% 
+  filter(species == "human") %>% 
+  View()
+```
+]
+
+---
+
+.w-50.fl[
+.green-dark.zilla.f4[Give your viewer a name]
+
+```{r eval=FALSE}
+starwars %>% 
+  filter(species == "human") %>% 
+  View("humans") #<<
+```
+]
+
+---
+layout: false
+
+- `Ctrl + .` to jump to a file
+
+- Back arrows
+
+- F2 to jump to function definition
+
+- F1 to jump to function help
+
+---
+
+- Add section labels using `Ctrl + R`
+
+- Browse section labels
+
+---
+
+- Run scripts as background jobs
+
+    - Default settings
+    - Return results to environment
+    - Watch progress in the console
+    - Use objects from global env
+    
+---
+
+- Restart your R Session
+
+    - `Command + Shift + F10`
+    - `Ctrl + Shift + F10`
+    
+- Run code up to here
+
+    - R Script `Cmd/Ctrl + Opt/Alt + B` 
+    - Rmd `Cmd/Ctrl + Opt/Alt + P`
+
+- Always start with a blank slate
+    
+    - `usethis::use_blank_slate()`
+    - https://rstats.wtf/save-source.html
+    - Go into settings to show this ...
+    
+---
+
+# Use Projects
+
+- [Project-oriented workflow](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/), Jenny Bryan
+
+- [Why should I use the `here` package](https://malco.io/2018/11/05/why-should-i-use-the-here-package-when-i-m-already-using-projects/), Malcom Barrett
+
+- [Use Alfred to launch projects](https://twitter.com/hadleywickham/status/968624630276804608)
+
+---
+
+# Poke around settings
+
+.w-50.fl[
+- Pane Layout
+
+- Code > Display
+
+- Appearance
+
+    - Fonts: [hasklig](https://github.com/i-tu/Hasklig/)
+    - Themes
+]
+    
+.fr[
+#### Hasklig
+![Hasklig Sample](https://raw.githubusercontent.com/i-tu/Hasklig/master/hasklig_example.png)
+
+#### Source Code Pro
+![Source Code Pro Sample](https://raw.githubusercontent.com/i-tu/Hasklig/master/SourceCodeProSample.png)
+]
+
+---
+
+# Themes
+
+[garrickadenbuie.com/project/rsthemes/](https://www.garrickadenbuie.com/project/rsthemes/)
+
+```{r eval=FALSE}
+remotes::install_github("gadenbuie/rsthemes", dependencies = TRUE)
+
+rsthemes::install_rsthemes()
+
+rsthemes::try_rsthemes()
+```
+
+---
+
+# rsthemes addins
+
+- Toggle Dark/Light
+
+- Auto choose dark/light
+
+- Choose next favorite
+
+---
+
+# Assign shortcuts to addins
+
+<kbd>Ctrl</kbd> + <kbd>Option</kbd> + <kbd>D</kbd>
+
+<kbd>Ctrl</kbd> + <kbd>Option</kbd> + <kbd>N</kbd>
+
+---
+
+# Keyboard Shortcuts
+
+- Tools > Keyboard Shortcuts Help
+
+- [RStudio IDE Cheat Sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/rstudio-ide.pdf)
+
+- Take 3 minutes and find a new shortcut to try this week
+
+`r countdown::countdown(3)`
+
+---
+
+# Command Palette
+
+New in RStudio 1.4 along with a few other awesome features
+
+- command palette
+- rainbow parens
+- visual markdown
+- new source column
+
+[RStudio Preview](https://rstudio.com/products/rstudio/download/preview/)
+
+---
+
+# Code Style
+
+Take an example that needs styling...
+
+- [styler](https://www.notion.so/styler-8121522005bb4917ba65c654a22799b7)
+
+- Use `identity()` or `I()` to walk through pipe steps
+
+- Realize code is out of place and move up/down to reorganize
+
+- Add new lines and fix indentation: <kbd>Ctrl</kbd> + <kbd>I</kbd>
+
+- Let your code breathe vertically! Change order of selection in a `select()`
+    - Use multiple cursors by <kbd>Cmd</kbd> + <kbd>Opt</kbd> + <click></click>
+
+???
+
+I use `Ctrl + Shift + S` for style selection and `Ctrl + Shift + Cmd + S` for style file
+
+---
+
+# Multiple cursors
+
+.mb5[
+Click to create new cursors .fr.tr.lh-copy[<kbd>Cmd/Ctrl</kbd> + <kbd>Opt/Alt</kbd> + <click></click>]
+]
+ 
+.mb5[ 
+Click and drag to select/create new cursors .fr[<kbd>Opt/Alt</kbd> + <click></click> and drag]
+]
+
+.mb5[
+Create new cursors with the keyboard .fr[<kbd>Cmd/Ctrl</kbd> + <kbd>Opt/Alt</kbd> + <click></click>]
+]
+
+.mb5[
+Create new cursors from selection .fr[<kbd>Find and Add Next</kbd> <kbd>Find and Select All</kbd>]
+]
+
+???
+
+- Find all - `Cmd + Alt + F`
+
+- Find and Add Next - `Cmd + D`
+
+---
+
+# Align Arguments and Assignment
+
+If code is more vertical, alignment is easier.
+
+- Align blocks of similar arguments or names or anytime there's repetition
+
+- Alignment makes it easier to scan for problems
+
+- [AlignAssign](https://github.com/seasmith/AlignAssign)
+
+---
+
+# Addins
+
+[addinslist](https://github.com/daattali/addinslist) is a great resource
+
+#### Some Favorites
+
+- [remedy](https://github.com/ThinkR-open/remedy)
+
+- [datapasta](https://github.com/MilesMcBain/datapasta)
+
+- [gistfo](https://github.com/MilesMcBain/gistfo)
+
+- [ermoji](https://github.com/gadenbuie/ermoji)
+
+#### Make Your Own
+
+- [shrtcts](https://pkg.garrickadenbuie/shrtcts)
+
+---
+
+# Snippets
+
+
+
+---
+
+# Infinite Moon Reader
+
+Use **Infinite Moon Reader** to automatically recompile an R Markdown document
+
+demo: `docs/try/infinite_moon_reader.Rmd`
+
+---
+
+# Clean Tuition
+
+demo: `R/clean_tuition.R`
+
+- Review techniques to re-style the code, figure out what's going on
+
+- Make a function to `tidy_tuition()`
+    - Use reload function shortcut
+    - Use `browser()`
+    - Insert roxygen skeleton
+    - Rename in scope
