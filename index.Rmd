@@ -480,23 +480,17 @@ layout: false
 
 Solve the mystery of the `black_box()` function...
 
---
-
 .w-50.fl.tc[
 Jump Anywhere
 
 <img src="assets/img/go-to-file.png" height = "90px">
 ]
 
---
-
 .w-50.fl.tc[
 Go Back
 
 <img src="assets/img/go-back.png" height = "90px">
 ]
-
---
 
 .w-50.fl.tc[
 Jump to Function
@@ -505,8 +499,6 @@ Jump to Function
 
 <kbd>F2</kbd>
 ]
-
---
 
 .w-50.fl.tc[
 Jump to Help
@@ -523,8 +515,6 @@ Jump to Help
 - Jump to `code_style.R`
 
 - Use the [styler](https://styler.r-lib.org/) package for magically clean code
-
---
 
 - Use `identity()` or `I()` to walk through pipe steps
 
@@ -626,8 +616,6 @@ Add .b[section labels] by pressing <kbd>Cmd/Ctrl</kbd> + <kbd>Shift</kbd> + <kbd
 # Library -----------------------------------------------------------------
 ```
 
---
-
 Browse section labels
 
 <img src="assets/img/navigate-section-headings.png" />
@@ -669,8 +657,6 @@ Configure Job Settings
 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>F10</kbd>
 ]
 
---
-
 .w-50.tc.pb4.pt2.ph3.fl[
 .blue.f4[Run Up To Here]
 
@@ -678,8 +664,6 @@ Configure Job Settings
 
 .code.bg-pink.white.pv1.ph2.mr3[Rmd] <kbd>Cmd/Ctrl</kbd> + <kbd>Opt/Alt</kbd> + <kbd>P</kbd>
 ]
-
---
 
 .w-50.mh-auto.tc[
 .green-dark.f4[Always start with a blank slate]
