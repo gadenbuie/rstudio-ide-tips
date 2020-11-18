@@ -273,7 +273,7 @@ class: middle
 ### Follow the Slides
 
 .f3.mb4.mt0[
-`r emo::ji("web")` https://.can-edit.key-slides-link[shortlink]
+`r emo::ji("web")` https://.can-edit.key-slides-link[rstudio-ide-tips.netlify.app]
 ]
 
 ### In the chat window
