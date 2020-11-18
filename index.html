@@ -13,7 +13,7 @@
     <link href="assets/libs/tachyons/tachyons.min.css" rel="stylesheet" />
     <link href="assets/libs/panelset/panelset.css" rel="stylesheet" />
     <script src="assets/libs/panelset/panelset.js"></script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"fdf13d3a6f6d42969bfdd32de83d8270","expires":14}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x1d0f0007f7e49e79a24b8160300d225","expires":14}</script>
     <script src="assets/libs/himalaya/himalaya.js"></script>
     <script src="assets/libs/js-cookie/js.cookie.js"></script>
     <link href="assets/libs/editable/editable.css" rel="stylesheet" />
@@ -203,37 +203,53 @@ class: middle
 .w-50[
 .b.green-dark.zilla.f3[gets me]
 .can-edit.key-rstudio-gets-me[
-- answer
+- Everything in one place
+- 4 panes to work with
+- Projects + sane file paths
+- Additional tools like `git`
+- Rainbow parentheses!
+- Tooling for package development
+- Running lots of scripts in the job pane
 ]
 ]
 
 .w-50[
 .b.orange.zilla.f3[gets me not]
 .can-edit.key-rstudio-gets-me-not[
-- answer
+- Color preview for CSS colors
+- Too many panes!
+- Paths can be tricky
+- Running lots of scripts
+- RStudio in other languages, like Spanish
+- Non-ASCII character paths
+- Having lots of tabs (or closing tabs)
 ]
 ]
 ]
 
 ---
 
-# Quick Poll
+# Check Your Keyboard
 
 .flex.f3[
 .w-third.tc[
 &lt;img src="assets/img/logo-apple.svg" height = "250px" /&gt;
 
-.can-edit[👤]
+&lt;kbd&gt;Cmd&lt;/kbd&gt; &lt;kbd&gt;⌘&lt;/kbd&gt;
+
+&lt;kbd&gt;Option&lt;/kbd&gt; &lt;kbd&gt;⌥&lt;/kbd&gt;
 ]
 .w-third.tc[
 &lt;img src="assets/img/logo-windows.svg" height = "250px" /&gt;
 
-.can-edit[👤]
+&lt;kbd&gt;Ctrl&lt;/kbd&gt;
+
+&lt;kbd&gt;Alt&lt;/kbd&gt;
 ]
 .w-third.tc[
 &lt;img src="assets/img/logo-linux.svg" height = "250px" /&gt;
 
-.can-edit[👤]
+.f1[👈]
 ]
 ]
 
@@ -414,6 +430,106 @@ Jump to Help
 
 ---
 
+# Code Style
+
+- Jump to `code_style.R`
+
+- Use the [styler](https://styler.r-lib.org/) package for magically clean code
+
+--
+
+- Use `identity()` or `I()` to walk through pipe steps
+
+- Move code up/down to reorganize
+
+- Add new lines and fix indentation: &lt;kbd&gt;Ctrl&lt;/kbd&gt; + &lt;kbd&gt;I&lt;/kbd&gt;
+
+- Let your code breathe vertically! 
+    - Change order of selection in a `select()`
+    
+    - Use multiple cursors by &lt;kbd&gt;Cmd&lt;/kbd&gt; + &lt;kbd&gt;Opt&lt;/kbd&gt; + &lt;click&gt;&lt;/click&gt;
+
+???
+
+I use `Ctrl + Shift + S` for style selection and `Ctrl + Shift + Cmd + S` for style file
+
+---
+
+# Multiple cursors
+
+.mb5[
+Click to create new cursors .fr.tr.lh-copy[&lt;kbd&gt;Cmd/Ctrl&lt;/kbd&gt; + &lt;kbd&gt;Opt/Alt&lt;/kbd&gt; + &lt;click&gt;&lt;/click&gt;]
+]
+ 
+.mb5[ 
+Click and drag to select/create new cursors .fr[&lt;kbd&gt;Opt/Alt&lt;/kbd&gt; + &lt;click&gt;&lt;/click&gt; and drag]
+]
+
+.mb5[
+Create new cursors with the keyboard .fr[&lt;kbd&gt;Cmd/Ctrl&lt;/kbd&gt; + &lt;kbd&gt;Opt/Alt&lt;/kbd&gt; + &lt;click&gt;&lt;/click&gt;]
+]
+
+.mb5[
+Create new cursors from selection .fr[&lt;kbd&gt;Find and Add Next&lt;/kbd&gt; &lt;kbd&gt;Find and Select All&lt;/kbd&gt;]
+]
+
+???
+
+- Find all - `Cmd + Alt + F`
+
+- Find and Add Next - `Cmd + D`
+
+---
+
+# Align Arguments and Assignment
+
+If code is more vertical, alignment is easier.
+
+- Align blocks of similar arguments or names or anytime there's repetition
+
+- Alignment makes it easier to scan for problems
+
+- [AlignAssign](https://github.com/seasmith/AlignAssign)
+
+---
+
+# Addins
+
+[addinslist](https://github.com/daattali/addinslist) — An addin to .b[find] and .b[install] great addins
+
+#### Some Favorites
+
+- [remedy](https://github.com/ThinkR-open/remedy)
+
+- [datapasta](https://github.com/MilesMcBain/datapasta)
+
+- [gistfo](https://github.com/MilesMcBain/gistfo)
+
+- [ermoji](https://github.com/gadenbuie/ermoji)
+
+#### Make Your Own
+
+- [shrtcts](https://pkg.garrickadenbuie/shrtcts)
+
+---
+
+## Coming Soon to an RStudio Near You
+
+New in **RStudio 1.4** along with a few other awesome features
+
+⭐ Command Palette
+
+🌈 Rainbow Parens
+
+👓 Visual Markdown
+
+🍱 New Source Column
+
+
+💾 [RStudio Preview](https://rstudio.com/products/rstudio/download/preview/)
+
+---
+
 # .orange[Organize Your Code]
 
 Add .b[section labels] by pressing &lt;kbd&gt;Cmd/Ctrl&lt;/kbd&gt; + &lt;kbd&gt;Shift&lt;/kbd&gt; + &lt;kbd&gt;R&lt;/kbd&gt;
@@ -506,32 +622,83 @@ https://rstats.wtf/save-source.html
 
 ---
 
-# .green-dark[Decorate RStudio]
+# Infinite Moon Reader
 
-🎛  There are **many** options to check and adjust in .ba.br2.bw1.b--light-gray.ph1.shadow-3[Global Options]
+Automatically renders an R Markdown document whenever you save 💾
 
-#### Code &gt; Display
+1. Jump to `docs/try/infinite_moon_reader.Rmd`
 
---
+1. Edit the document and press save to see it in action
 
-.w-50.fl[
-#### Appearance
+???
 
-- Fonts
-    - Like ligatures? Try [hasklig](https://github.com/i-tu/Hasklig/)
-    
-- Themes
+- Show extract variable
+- Show insert new chunk
+- Show insert new chunk within a chunk
+
+---
+exclude: true
+
+# Clean Tuition
+
+Jump to `R/clean_tuition.R`
+
+Let's review together, refactoring and restyling the code
+
+Make a function to `tidy_tuition()`, on the way we may learn how to
+
+- Run current function definition
+- Use `browser()`
+- Insert roxygen skeleton
+- Rename in scope
+
+---
+class: center middle
+
+# Resources for learning more
+
+.f3[
+[RStudio IDE Cheat Sheet](https://github.com/rstudio/cheatsheets/blob/master/rstudio-ide.pdf)
+
+[&amp;commat;rstudiotips](https://twitter.com/rstudiotips)
 ]
 
 --
-    
-.fr[
-#### Hasklig
-![Hasklig Sample](https://raw.githubusercontent.com/i-tu/Hasklig/master/hasklig_example.png)
 
-#### Source Code Pro
-![Source Code Pro Sample](https://raw.githubusercontent.com/i-tu/Hasklig/master/SourceCodeProSample.png)
+.w-100.tc.absolute.bottom-2.left-0[
+[&amp;commat;grrrck](https://twitter.com/grrrck) .ph2[&amp;middot;]
+[&amp;commat;gvwilson](https://twitter.com/gvwilson)
 ]
+
+---
+class: inverse center middle
+
+# Bonus Round
+
+---
+
+# Snippets
+
+.ba.br2.bw1.b--light-gray.ph1.shadow-3[Global Options] &amp;rarr; Code &amp;rarr; Edit Snippets
+
+--
+
+.b[Snippet Syntax]
+
+```
+snippet s3generic
+	${1:generic} &lt;- function(x, ...) {
+	  UseMethod("${1:generic}", x)
+	}
+
+	${1:generic}.${2:method} &lt;- function(x, ...) {
+	  ${0}
+	}
+```
+
+--
+
+.b.blue[Try this one:] `shinymod`
 
 ---
 
@@ -616,184 +783,38 @@ Take 3 minutes to create new shortcuts for
 ]
 
 
-<div class="countdown" id="timer_5fb518e4" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_5fb54684" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
 ---
 
-## Coming Soon to an RStudio Near You
+# .green-dark[Decorate RStudio]
 
-New in **RStudio 1.4** along with a few other awesome features
+🎛  There are **many** options to check and adjust in .ba.br2.bw1.b--light-gray.ph1.shadow-3[Global Options]
 
-⭐ Command Palette
-
-🌈 Rainbow Parens
-
-👓 Visual Markdown
-
-🍱 New Source Column
-
-
-💾 [RStudio Preview](https://rstudio.com/products/rstudio/download/preview/)
-
----
-
-# Code Style
-
-- Jump to `code_style.R`
-
-- Use the [styler](https://styler.r-lib.org/) package for magically clean code
+#### Code &gt; Display
 
 --
 
-- Use `identity()` or `I()` to walk through pipe steps
+.w-50.fl[
+#### Appearance
 
-- Move code up/down to reorganize
-
-- Add new lines and fix indentation: &lt;kbd&gt;Ctrl&lt;/kbd&gt; + &lt;kbd&gt;I&lt;/kbd&gt;
-
-- Let your code breathe vertically! 
-    - Change order of selection in a `select()`
+- Fonts
+    - Like ligatures? Try [hasklig](https://github.com/i-tu/Hasklig/)
     
-    - Use multiple cursors by &lt;kbd&gt;Cmd&lt;/kbd&gt; + &lt;kbd&gt;Opt&lt;/kbd&gt; + &lt;click&gt;&lt;/click&gt;
-
-???
-
-I use `Ctrl + Shift + S` for style selection and `Ctrl + Shift + Cmd + S` for style file
-
----
-
-# Multiple cursors
-
-.mb5[
-Click to create new cursors .fr.tr.lh-copy[&lt;kbd&gt;Cmd/Ctrl&lt;/kbd&gt; + &lt;kbd&gt;Opt/Alt&lt;/kbd&gt; + &lt;click&gt;&lt;/click&gt;]
-]
- 
-.mb5[ 
-Click and drag to select/create new cursors .fr[&lt;kbd&gt;Opt/Alt&lt;/kbd&gt; + &lt;click&gt;&lt;/click&gt; and drag]
-]
-
-.mb5[
-Create new cursors with the keyboard .fr[&lt;kbd&gt;Cmd/Ctrl&lt;/kbd&gt; + &lt;kbd&gt;Opt/Alt&lt;/kbd&gt; + &lt;click&gt;&lt;/click&gt;]
-]
-
-.mb5[
-Create new cursors from selection .fr[&lt;kbd&gt;Find and Add Next&lt;/kbd&gt; &lt;kbd&gt;Find and Select All&lt;/kbd&gt;]
-]
-
-???
-
-- Find all - `Cmd + Alt + F`
-
-- Find and Add Next - `Cmd + D`
-
----
-
-# Align Arguments and Assignment
-
-If code is more vertical, alignment is easier.
-
-- Align blocks of similar arguments or names or anytime there's repetition
-
-- Alignment makes it easier to scan for problems
-
-- [AlignAssign](https://github.com/seasmith/AlignAssign)
-
----
-
-# Addins
-
-[addinslist](https://github.com/daattali/addinslist) — An addin to .b[find] and .b[install] great addins
-
-#### Some Favorites
-
-- [remedy](https://github.com/ThinkR-open/remedy)
-
-- [datapasta](https://github.com/MilesMcBain/datapasta)
-
-- [gistfo](https://github.com/MilesMcBain/gistfo)
-
-- [ermoji](https://github.com/gadenbuie/ermoji)
-
-#### Make Your Own
-
-- [shrtcts](https://pkg.garrickadenbuie/shrtcts)
-
----
-
-# Snippets
-
-.ba.br2.bw1.b--light-gray.ph1.shadow-3[Global Options] &amp;rarr; Code &amp;rarr; Edit Snippets
-
---
-
-.b[Snippet Syntax]
-
-```
-snippet s3generic
-	${1:generic} &lt;- function(x, ...) {
-	  UseMethod("${1:generic}", x)
-	}
-
-	${1:generic}.${2:method} &lt;- function(x, ...) {
-	  ${0}
-	}
-```
-
---
-
-.b.blue[Try this one:] `shinymod`
-
----
-
-# Infinite Moon Reader
-
-Automatically renders an R Markdown document whenever you save 💾
-
-1. Jump to `docs/try/infinite_moon_reader.Rmd`
-
-1. Edit the document and press save to see it in action
-
-???
-
-- Show extract variable
-- Show insert new chunk
-- Show insert new chunk within a chunk
-
----
-
-# Clean Tuition
-
-Jump to `R/clean_tuition.R`
-
-Let's review together, refactoring and restyling the code
-
-Make a function to `tidy_tuition()`, on the way we may learn how to
-
-- Run current function definition
-- Use `browser()`
-- Insert roxygen skeleton
-- Rename in scope
-
----
-class: center middle
-
-# Resources for learning more
-
-.f3[
-[RStudio IDE Cheat Sheet](https://github.com/rstudio/cheatsheets/blob/master/rstudio-ide.pdf)
-
-[&amp;commat;rstudiotips](https://twitter.com/rstudiotips)
+- Themes
 ]
 
 --
+    
+.fr[
+#### Hasklig
+![Hasklig Sample](https://raw.githubusercontent.com/i-tu/Hasklig/master/hasklig_example.png)
 
-.w-100.tc.absolute.bottom-2.left-0[
-[&amp;commat;grrrck](https://twitter.com/grrrck) .ph2[&amp;middot;]
-[&amp;commat;gvwilson](https://twitter.com/gvwilson)
+#### Source Code Pro
+![Source Code Pro Sample](https://raw.githubusercontent.com/i-tu/Hasklig/master/SourceCodeProSample.png)
 ]
-
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
