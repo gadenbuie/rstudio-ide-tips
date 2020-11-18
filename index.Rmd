@@ -1,5 +1,5 @@
 ---
-title: "RStudio Pro Tips"
+title: "RStudio IDE Pro Tips"
 subtitle: "Mind-Meld with the RStudio IDE"
 author: 
   - Garrick Aden-Buie
@@ -9,7 +9,7 @@ institute: "RStudio, PBC"
 date: '`r strftime(Sys.time(), "%B %d, %Y")`'
 output:
   xaringan::moon_reader:
-    lib_dir: libs
+    lib_dir: assets/libs
     css: xaringan-rstudio.css
     seal: false
     anchor_sections: false
@@ -105,6 +105,7 @@ xaringanthemer::style_duo_accent(
       width = "100%"
     ),
     ".hide-count .remark-slide-number" = list(display = "none"),
+    ".mh-auto" = list("margin-left" = "auto", "margin-right" = "auto"),
     ".remark-slide-content a" = list("border-bottom" = "2px dashed var(--blue-light)"),
     ".remark-slide-content a:hover" = list("border-bottom" = "2px solid var(--blue-light)")
   ),
@@ -249,26 +250,56 @@ three <- ".b[Adapt] your workflow"
 ]
 ]
 
+???
+
+There's always going to be a certain amount of friction
+
+coding is hard, right
+
+the goal is to reduce friction between you and thinking about your code
+
+listen to the friction is a signal, listen to the things that disturb you
+
 ---
 layout: false
 class: middle
 
-# Set Up
+### Set Up
 
-.f3[
+.f3.mb4.mt0[
 `r emo::ji("briefcase")` .f4.code[usethis::use_course(".can-edit.key-course-link[gadenbuie/rstudio-ide-tips-demo]")]
+]
 
+### Follow the Slides
+
+.f3.mb4.mt0[
 `r emo::ji("web")` https://.can-edit.key-slides-link[shortlink]
+]
 
-`r emo::ji("thinking")` .b[What feature makes RStudio _your_ IDE?]
+### In the chat window
+
+.f3.mb4.mt0[
+`r emo::ji("thinking")` .b[How do you and RStudio get along .green[best] and .orange[worst]?]
 ]
 
 ---
 
-# What makes RStudio .green[your] IDE?
+## RStudio...
 
-.can-edit[
-- answers...
+.flex[
+.w-50[
+.b.green-dark.zilla.f3[gets me]
+.can-edit.key-rstudio-gets-me[
+- answer
+]
+]
+
+.w-50[
+.b.orange.zilla.f3[gets me not]
+.can-edit.key-rstudio-gets-me-not[
+- answer
+]
+]
 ]
 
 ---
@@ -297,6 +328,8 @@ class: middle
 
 # .green[Set Up Your Workspace]
 
+- **Open .code[R/00_general.R]**
+
 - What panes are available?
 
 - Where do you put them?
@@ -312,27 +345,63 @@ class: middle
 <img class="absolute bottom-2 right-2 w-50 shadow-4 ba b--silver bw1" src="assets/img/workspace.png">
 
 ---
+class: f3
 
 # Move Between Panes
 
-.w-50.fl[
-```{r echo=FALSE}
-highlight_keys_mac(c("Ctrl", "1"), "Focus Source Code")
-```
-```{r echo=FALSE}
-highlight_keys_win(c("Ctrl Left", "1"), "Focus Source Code")
-```
+.flex[
+.w-third[
+Press <kbd>Ctrl</kbd> + ...
 ]
 
---
+.w-third[
+<kbd>1</kbd> &rarr; Source
 
-.w-50.fl[
-```{r echo=FALSE}
-highlight_keys_mac(c("Ctrl", "2"), "Focus Console")
-```
-```{r echo=FALSE}
-highlight_keys_win(c("Ctrl Left", "2"), "Focus Console")
-```
+<kbd>2</kbd> &rarr; Console
+
+<kbd>3</kbd> &rarr; Help
+
+<kbd>5</kbd> &rarr; .can-edit[&#8230;]
+
+<kbd>6</kbd> &rarr; .can-edit[&#8230;]
+
+<kbd>7</kbd> &rarr; .can-edit[&#8230;]
+
+<kbd>8</kbd> &rarr; .can-edit[&#8230;]
+
+<kbd>9</kbd> &rarr; .can-edit[&#8230;]
+]
+]
+
+.absolute.bottom-2[`r emo::ji("vulcan")` **Stretch your fingers**]
+
+---
+class: f3
+
+# Zoom To Pane
+
+.flex[
+.w-third[
+Press <kbd>Ctrl</kbd> + <kbd class="orange">Shift</kbd> + ...
+]
+
+.w-third[
+.orange[<kbd>1</kbd> &rarr; Source]
+
+.orange[<kbd>2</kbd> &rarr; Console]
+
+<kbd>3</kbd> &rarr; Help
+
+<kbd>5</kbd> &rarr; Files
+
+<kbd>6</kbd> &rarr; Plots
+
+<kbd>7</kbd> &rarr; Packages
+
+<kbd>8</kbd> &rarr; Environment
+
+.orange[<kbd>9</kbd> &rarr; Viewer]
+]
 ]
 
 ---
@@ -391,47 +460,121 @@ starwars %>%
 ---
 layout: false
 
-- `Ctrl + .` to jump to a file
+# Getting Around
 
-- Back arrows
+Solve the mystery of the `black_box()` function...
 
-- F2 to jump to function definition
+--
 
-- F1 to jump to function help
+.w-50.fl.tc[
+Jump Anywhere
+
+<img src="assets/img/go-to-file.png" height = "90px">
+]
+
+--
+
+.w-50.fl.tc[
+Go Back
+
+<img src="assets/img/go-back.png" height = "90px">
+]
+
+--
+
+.w-50.fl.tc[
+Jump to Function
+
+.code[.bg-yellow[black_box]()]
+
+<kbd>F2</kbd>
+]
+
+--
+
+.w-50.fl.tc[
+Jump to Help
+
+.code[.bg-yellow[comment](x) <- "..."]
+
+<kbd>F1</kbd>
+]
 
 ---
 
-- Add section labels using `Ctrl + R`
+# .orange[Organize Your Code]
 
-- Browse section labels
+Add .b[section labels] by pressing <kbd>Cmd/Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd>
+
+```{r eval=FALSE}
+# Library -----------------------------------------------------------------
+```
+
+--
+
+Browse section labels
+
+<img src="assets/img/navigate-section-headings.png" />
 
 ---
 
-- Run scripts as background jobs
+# Run Script as Background Job
 
-    - Default settings
-    - Return results to environment
-    - Watch progress in the console
-    - Use objects from global env
-    
+.flex[
+.w-50.tc[
+Source as Local Job
+
+![](assets/img/source-as-local-job-menu.png)
+]
+
+.w-50.tc[
+Configure Job Settings
+
+![](assets/img/source-as-local-job-dialog.png)
+]
+]
+
+???
+
+- Default settings
+- Return results to environment
+- Watch progress in the console
+- Use objects from global env
+
 ---
 
-- Restart your R Session
+# .orange[Let It Go...]
 
-    - `Command + Shift + F10`
-    - `Ctrl + Shift + F10`
-    
-- Run code up to here
+.w-50.tc.pb4.pt2.ph3.fl[
+.orange.f4[Restart R Session]
 
-    - R Script `Cmd/Ctrl + Opt/Alt + B` 
-    - Rmd `Cmd/Ctrl + Opt/Alt + P`
+<kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>0</kbd>
 
-- Always start with a blank slate
-    
-    - `usethis::use_blank_slate()`
-    - https://rstats.wtf/save-source.html
-    - Go into settings to show this ...
-    
+<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>F10</kbd>
+]
+
+--
+
+.w-50.tc.pb4.pt2.ph3.fl[
+.blue.f4[Run Up To Here]
+
+.code.bg-yellow.white.pv1.ph2.mr3[R] <kbd>Cmd/Ctrl</kbd> + <kbd>Opt/Alt</kbd> + <kbd>B</kbd>
+
+.code.bg-pink.white.pv1.ph2.mr3[Rmd] <kbd>Cmd/Ctrl</kbd> + <kbd>Opt/Alt</kbd> + <kbd>P</kbd>
+]
+
+--
+
+.w-50.mh-auto.tc[
+.green-dark.f4[Always start with a blank slate]
+
+`usethis::use_blank_slate()`
+
+https://rstats.wtf/save-source.html
+
+`r emo::ji("control_knobs")` Global/Project Settings
+]
+
 ---
 
 # Use Projects
@@ -440,22 +583,34 @@ layout: false
 
 - [Why should I use the `here` package](https://malco.io/2018/11/05/why-should-i-use-the-here-package-when-i-m-already-using-projects/), Malcom Barrett
 
-- [Use Alfred to launch projects](https://twitter.com/hadleywickham/status/968624630276804608)
+- [Use Alfred to launch projects](https://twitter.com/hadleywickham/status/968624630276804608), Hadley Wickham
+
+--
+
+.mt5[
+![](assets/img/too-many-r-projects.jpeg)
+]
 
 ---
 
-# Poke around settings
+# .green-dark[Decorate RStudio]
+
+`r emo::ji("control_knobs")`  There are **many** options to check and adjust in .ba.br2.bw1.b--light-gray.ph1.shadow-3[Global Options]
+
+#### Code > Display
+
+--
 
 .w-50.fl[
-- Pane Layout
+#### Appearance
 
-- Code > Display
-
-- Appearance
-
-    - Fonts: [hasklig](https://github.com/i-tu/Hasklig/)
-    - Themes
+- Fonts
+    - Like ligatures? Try [hasklig](https://github.com/i-tu/Hasklig/)
+    
+- Themes
 ]
+
+--
     
 .fr[
 #### Hasklig
@@ -467,9 +622,13 @@ layout: false
 
 ---
 
-# Themes
+# .green-dark[Themes]
+
+#### A collection of many RStudio themes
 
 [garrickadenbuie.com/project/rsthemes/](https://www.garrickadenbuie.com/project/rsthemes/)
+
+#### Install and try themes
 
 ```{r eval=FALSE}
 remotes::install_github("gadenbuie/rsthemes", dependencies = TRUE)
@@ -481,62 +640,106 @@ rsthemes::try_rsthemes()
 
 ---
 
-# rsthemes addins
+# .green-dark[rsthemes addins]
 
-- Toggle Dark/Light
+.center[
+![](assets/img/addins-menu.png)
 
-- Auto choose dark/light
+`r emo::ji("sunset")` Toggle Dark Mode
 
-- Choose next favorite
+`r emo::ji("night")` Auto Choose Dark or Light Theme
+
+`r emo::ji("red heart")` Next Favorite Theme
+]
 
 ---
 
-# Assign shortcuts to addins
+# .green-dark[Assign shortcuts to addins]
+
+.flex[
+.w-50[
+![](assets/img/keyboard-shortcuts-modify.png)
+]
+
+.w-50[
+.b[Toggle Dark/Light]
 
 <kbd>Ctrl</kbd> + <kbd>Option</kbd> + <kbd>D</kbd>
 
+.b[Next Favorite Theme]
+
 <kbd>Ctrl</kbd> + <kbd>Option</kbd> + <kbd>N</kbd>
+]
+]
+
 
 ---
 
 # Keyboard Shortcuts
 
+.flex.flex-wrap[
+.w-50[
+![](assets/img/keyboard-shortcuts-help.png)
+]
+
+.w-50[
+#### Reference
+
 - Tools > Keyboard Shortcuts Help
 
 - [RStudio IDE Cheat Sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/rstudio-ide.pdf)
 
-- Take 3 minutes and find a new shortcut to try this week
+.mt5[
+#### .green-dark[Your Turn]
+]
+
+Take 3 minutes to create new shortcuts for
+
+- Find and Add Next
+
+- Find and Select All
+]
+]
+
 
 `r countdown::countdown(3)`
 
 ---
 
-# Command Palette
+## Coming Soon to an RStudio Near You
 
-New in RStudio 1.4 along with a few other awesome features
+New in **RStudio 1.4** along with a few other awesome features
 
-- command palette
-- rainbow parens
-- visual markdown
-- new source column
+`r emo::ji("star")` Command Palette
 
-[RStudio Preview](https://rstudio.com/products/rstudio/download/preview/)
+`r emo::ji("rainbow")` Rainbow Parens
+
+`r emo::ji("glasses")` Visual Markdown
+
+`r emo::ji("bento")` New Source Column
+
+
+`r emo::ji("save")` [RStudio Preview](https://rstudio.com/products/rstudio/download/preview/)
 
 ---
 
 # Code Style
 
-Take an example that needs styling...
+- Jump to `code_style.R`
 
-- [styler](https://www.notion.so/styler-8121522005bb4917ba65c654a22799b7)
+- Use the [styler](https://styler.r-lib.org/) package for magically clean code
+
+--
 
 - Use `identity()` or `I()` to walk through pipe steps
 
-- Realize code is out of place and move up/down to reorganize
+- Move code up/down to reorganize
 
 - Add new lines and fix indentation: <kbd>Ctrl</kbd> + <kbd>I</kbd>
 
-- Let your code breathe vertically! Change order of selection in a `select()`
+- Let your code breathe vertically! 
+    - Change order of selection in a `select()`
+    
     - Use multiple cursors by <kbd>Cmd</kbd> + <kbd>Opt</kbd> + <click></click>
 
 ???
@@ -585,7 +788,7 @@ If code is more vertical, alignment is easier.
 
 # Addins
 
-[addinslist](https://github.com/daattali/addinslist) is a great resource
+[addinslist](https://github.com/daattali/addinslist) — An addin to .b[find] and .b[install] great addins
 
 #### Some Favorites
 
@@ -605,26 +808,73 @@ If code is more vertical, alignment is easier.
 
 # Snippets
 
+.ba.br2.bw1.b--light-gray.ph1.shadow-3[Global Options] &rarr; Code &rarr; Edit Snippets
 
+--
+
+.b[Snippet Syntax]
+
+```
+snippet s3generic
+	${1:generic} <- function(x, ...) {
+	  UseMethod("${1:generic}", x)
+	}
+
+	${1:generic}.${2:method} <- function(x, ...) {
+	  ${0}
+	}
+```
+
+--
+
+.b.blue[Try this one:] `shinymod`
 
 ---
 
 # Infinite Moon Reader
 
-Use **Infinite Moon Reader** to automatically recompile an R Markdown document
+Automatically renders an R Markdown document whenever you save `r emo::ji("save")`
 
-demo: `docs/try/infinite_moon_reader.Rmd`
+1. Jump to `docs/try/infinite_moon_reader.Rmd`
+
+1. Edit the document and press save to see it in action
+
+???
+
+- Show extract variable
+- Show insert new chunk
+- Show insert new chunk within a chunk
 
 ---
 
 # Clean Tuition
 
-demo: `R/clean_tuition.R`
+Jump to `R/clean_tuition.R`
 
-- Review techniques to re-style the code, figure out what's going on
+Let's review together, refactoring and restyling the code
 
-- Make a function to `tidy_tuition()`
-    - Use reload function shortcut
-    - Use `browser()`
-    - Insert roxygen skeleton
-    - Rename in scope
+Make a function to `tidy_tuition()`, on the way we may learn how to
+
+- Run current function definition
+- Use `browser()`
+- Insert roxygen skeleton
+- Rename in scope
+
+---
+class: center middle
+
+# Resources for learning more
+
+.f3[
+[RStudio IDE Cheat Sheet](https://github.com/rstudio/cheatsheets/blob/master/rstudio-ide.pdf)
+
+[&commat;rstudiotips](https://twitter.com/rstudiotips)
+]
+
+--
+
+.w-100.tc.absolute.bottom-2.left-0[
+[&commat;grrrck](https://twitter.com/grrrck) .ph2[&middot;]
+[&commat;gvwilson](https://twitter.com/gvwilson)
+]
+

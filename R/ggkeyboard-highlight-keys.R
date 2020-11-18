@@ -8,20 +8,29 @@ plot_layer <- function(g, i = length(g$layers)) {
   gg
 }
 
-highlight_keys_base <- function(keys, highlight_keys, title = NULL, palette = "pastel") {
+highlight_keys_base <- function(keys, highlight_keys, title = NULL, palette = "pastel", mix = NULL) {
   g <- ggkeyboard(keys, palette = keyboard_palette(palette))
 
   text_keys <- paste(gsub(" (Left|Right)", "", highlight_keys), collapse = " + ")
+
+  colorize <- function(clr, mix = NULL) {
+    if (is.null(mix)) return(clr)
+    prismatic::clr_mix(clr, mix, ratio = 0.15)
+  }
 
   g$layers[[2]]$data <-
     g$layers[[2]]$data %>%
     mutate(
       fill = if_else(!key %in% highlight_keys, clr_lighten(clr_grayscale(fill)), fill),
       colour = if_else(!key %in% highlight_keys, clr_lighten(clr_grayscale(colour)), colour),
-      # text_colour = if_else(!key %in% highlight_keys, clr_desaturate(text_colour, 0.9), text_colour)
+      across(c(fill, colour), colorize, mix = mix)
     )
 
-  g$layers[[6]]$data <- g$layers[[6]]$data %>% mutate_at(c("fill", "colour"), clr_desaturate, 0.9)
+  g$layers[[6]]$data <- g$layers[[6]]$data %>%
+    mutate_at(c("fill", "colour"), clr_desaturate, 0.9) %>%
+    mutate_at(c("fill", "colour"), colorize, mix = mix)
+
+  # remove background
   g$layers <- g$layers[-1]
 
   g +
@@ -41,7 +50,7 @@ highlight_keys_mac <- function(highlight_keys, title = NULL, palette = "pastel")
       key_label = recode(key_label, Ctrl = "^\nCtrl")
     )
 
-  highlight_keys_base(mac_keys, highlight_keys, title, palette)
+  highlight_keys_base(mac_keys, highlight_keys, title, palette, mix = "#4D8DC9")
 }
 
 highlight_keys_win <- function(highlight_keys, title = NULL, palette = "pastel") {
@@ -57,5 +66,5 @@ highlight_keys_win <- function(highlight_keys, title = NULL, palette = "pastel")
       )
     )
 
-  highlight_keys_base(win_keys, highlight_keys, title, palette)
+  highlight_keys_base(win_keys, highlight_keys, title, palette, mix = "#A4C689")
 }

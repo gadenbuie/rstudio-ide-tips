@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>RStudio Pro Tips</title>
+    <title>RStudio IDE Pro Tips</title>
     <meta charset="utf-8" />
     <meta name="author" content="Garrick Aden-Buie" />
     <meta name="author" content="Mario Ferrini" />
     <meta name="author" content="Greg Wilson" />
     <meta name="date" content="2020-11-17" />
-    <script src="libs/header-attrs/header-attrs.js"></script>
-    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
-    <script src="libs/tile-view/tile-view.js"></script>
-    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
-    <link href="libs/panelset/panelset.css" rel="stylesheet" />
-    <script src="libs/panelset/panelset.js"></script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"d0c7cbc7b32a4837880a9ca5a08a7541","expires":14}</script>
-    <script src="libs/himalaya/himalaya.js"></script>
-    <script src="libs/js-cookie/js.cookie.js"></script>
-    <link href="libs/editable/editable.css" rel="stylesheet" />
-    <script src="libs/editable/editable.js"></script>
-    <script src="libs/peerjs/peerjs.min.js"></script>
-    <script src="libs/tiny.toast/toast.min.js"></script>
-    <link href="libs/xaringanExtra-broadcast/broadcast.css" rel="stylesheet" />
-    <script src="libs/xaringanExtra-broadcast/broadcast.js"></script>
-    <link href="libs/xaringanExtra-extra-styles/xaringanExtra-extra-styles.css" rel="stylesheet" />
-    <link href="libs/countdown/countdown.css" rel="stylesheet" />
-    <script src="libs/countdown/countdown.js"></script>
+    <script src="assets/libs/header-attrs/header-attrs.js"></script>
+    <link href="assets/libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="assets/libs/tile-view/tile-view.js"></script>
+    <link href="assets/libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <link href="assets/libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="assets/libs/panelset/panelset.js"></script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"c81f82dc2c234439b36ef6721fb14b13","expires":14}</script>
+    <script src="assets/libs/himalaya/himalaya.js"></script>
+    <script src="assets/libs/js-cookie/js.cookie.js"></script>
+    <link href="assets/libs/editable/editable.css" rel="stylesheet" />
+    <script src="assets/libs/editable/editable.js"></script>
+    <script src="assets/libs/peerjs/peerjs.min.js"></script>
+    <script src="assets/libs/tiny.toast/toast.min.js"></script>
+    <link href="assets/libs/xaringanExtra-broadcast/broadcast.css" rel="stylesheet" />
+    <script src="assets/libs/xaringanExtra-broadcast/broadcast.js"></script>
+    <link href="assets/libs/xaringanExtra-extra-styles/xaringanExtra-extra-styles.css" rel="stylesheet" />
+    <link href="assets/libs/countdown/countdown.css" rel="stylesheet" />
+    <script src="assets/libs/countdown/countdown.js"></script>
     <link rel="stylesheet" href="xaringan-rstudio.css" type="text/css" />
   </head>
   <body>
@@ -48,7 +48,7 @@ class: left bottom hide-count
 
 .talk-meta[
 .talk-title[
-# RStudio Pro Tips
+# RStudio IDE Pro Tips
 
 ## .blue-light[Mind-Meld with the RStudio IDE]
 ]
@@ -163,26 +163,56 @@ class: center
 ]
 ]
 
+???
+
+There's always going to be a certain amount of friction
+
+coding is hard, right
+
+the goal is to reduce friction between you and thinking about your code
+
+listen to the friction is a signal, listen to the things that disturb you
+
 ---
 layout: false
 class: middle
 
-# Set Up
+### Set Up
 
-.f3[
+.f3.mb4.mt0[
 💼 .f4.code[usethis::use_course(".can-edit.key-course-link[gadenbuie/rstudio-ide-tips-demo]")]
+]
 
+### Follow the Slides
+
+.f3.mb4.mt0[
 🕸 https://.can-edit.key-slides-link[shortlink]
+]
 
-🤔 .b[What feature makes RStudio _your_ IDE?]
+### In the chat window
+
+.f3.mb4.mt0[
+🤔 .b[How do you and RStudio get along .green[best] and .orange[worst]?]
 ]
 
 ---
 
-# What makes RStudio .green[your] IDE?
+## RStudio...
 
-.can-edit[
-- answers...
+.flex[
+.w-50[
+.b.green-dark.zilla.f3[gets me]
+.can-edit.key-rstudio-gets-me[
+- answer
+]
+]
+
+.w-50[
+.b.orange.zilla.f3[gets me not]
+.can-edit.key-rstudio-gets-me-not[
+- answer
+]
+]
 ]
 
 ---
@@ -211,6 +241,8 @@ class: middle
 
 # .green[Set Up Your Workspace]
 
+- **Open .code[R/00_general.R]**
+
 - What panes are available?
 
 - Where do you put them?
@@ -226,19 +258,63 @@ class: middle
 &lt;img class="absolute bottom-2 right-2 w-50 shadow-4 ba b--silver bw1" src="assets/img/workspace.png"&gt;
 
 ---
+class: f3
 
 # Move Between Panes
 
-.w-50.fl[
-&lt;img src="index_files/figure-html/unnamed-chunk-3-1.png" width="100%" /&gt;
-&lt;img src="index_files/figure-html/unnamed-chunk-4-1.png" width="100%" /&gt;
+.flex[
+.w-third[
+Press &lt;kbd&gt;Ctrl&lt;/kbd&gt; + ...
 ]
 
---
+.w-third[
+&lt;kbd&gt;1&lt;/kbd&gt; &amp;rarr; Source
 
-.w-50.fl[
-&lt;img src="index_files/figure-html/unnamed-chunk-5-1.png" width="100%" /&gt;
-&lt;img src="index_files/figure-html/unnamed-chunk-6-1.png" width="100%" /&gt;
+&lt;kbd&gt;2&lt;/kbd&gt; &amp;rarr; Console
+
+&lt;kbd&gt;3&lt;/kbd&gt; &amp;rarr; Help
+
+&lt;kbd&gt;5&lt;/kbd&gt; &amp;rarr; .can-edit[&amp;#8230;]
+
+&lt;kbd&gt;6&lt;/kbd&gt; &amp;rarr; .can-edit[&amp;#8230;]
+
+&lt;kbd&gt;7&lt;/kbd&gt; &amp;rarr; .can-edit[&amp;#8230;]
+
+&lt;kbd&gt;8&lt;/kbd&gt; &amp;rarr; .can-edit[&amp;#8230;]
+
+&lt;kbd&gt;9&lt;/kbd&gt; &amp;rarr; .can-edit[&amp;#8230;]
+]
+]
+
+.absolute.bottom-2[🖖 **Stretch your fingers**]
+
+---
+class: f3
+
+# Zoom To Pane
+
+.flex[
+.w-third[
+Press &lt;kbd&gt;Ctrl&lt;/kbd&gt; + &lt;kbd class="orange"&gt;Shift&lt;/kbd&gt; + ...
+]
+
+.w-third[
+.orange[&lt;kbd&gt;1&lt;/kbd&gt; &amp;rarr; Source]
+
+.orange[&lt;kbd&gt;2&lt;/kbd&gt; &amp;rarr; Console]
+
+&lt;kbd&gt;3&lt;/kbd&gt; &amp;rarr; Help
+
+&lt;kbd&gt;5&lt;/kbd&gt; &amp;rarr; Files
+
+&lt;kbd&gt;6&lt;/kbd&gt; &amp;rarr; Plots
+
+&lt;kbd&gt;7&lt;/kbd&gt; &amp;rarr; Packages
+
+&lt;kbd&gt;8&lt;/kbd&gt; &amp;rarr; Environment
+
+.orange[&lt;kbd&gt;9&lt;/kbd&gt; &amp;rarr; Viewer]
+]
 ]
 
 ---
@@ -259,8 +335,8 @@ View(starwars)
 ]
 
 .w-50.fr[
-&lt;img src="index_files/figure-html/unnamed-chunk-8-1.png" width="100%" /&gt;
-&lt;img src="index_files/figure-html/unnamed-chunk-9-1.png" width="100%" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-4-1.png" width="100%" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-5-1.png" width="100%" /&gt;
 ]
 
 ---
@@ -296,47 +372,122 @@ starwars %&gt;%
 ---
 layout: false
 
-- `Ctrl + .` to jump to a file
+# Getting Around
 
-- Back arrows
+Solve the mystery of the `black_box()` function...
 
-- F2 to jump to function definition
+--
 
-- F1 to jump to function help
+.w-50.fl.tc[
+Jump Anywhere
+
+&lt;img src="assets/img/go-to-file.png" height = "90px"&gt;
+]
+
+--
+
+.w-50.fl.tc[
+Go Back
+
+&lt;img src="assets/img/go-back.png" height = "90px"&gt;
+]
+
+--
+
+.w-50.fl.tc[
+Jump to Function
+
+.code[.bg-yellow[black_box]()]
+
+&lt;kbd&gt;F2&lt;/kbd&gt;
+]
+
+--
+
+.w-50.fl.tc[
+Jump to Help
+
+.code[.bg-yellow[comment](x) &lt;- "..."]
+
+&lt;kbd&gt;F1&lt;/kbd&gt;
+]
 
 ---
 
-- Add section labels using `Ctrl + R`
+# .orange[Organize Your Code]
 
-- Browse section labels
+Add .b[section labels] by pressing &lt;kbd&gt;Cmd/Ctrl&lt;/kbd&gt; + &lt;kbd&gt;Shift&lt;/kbd&gt; + &lt;kbd&gt;R&lt;/kbd&gt;
+
+
+```r
+# Library -----------------------------------------------------------------
+```
+
+--
+
+Browse section labels
+
+&lt;img src="assets/img/navigate-section-headings.png" /&gt;
 
 ---
 
-- Run scripts as background jobs
+# Run Script as Background Job
 
-    - Default settings
-    - Return results to environment
-    - Watch progress in the console
-    - Use objects from global env
-    
+.flex[
+.w-50.tc[
+Source as Local Job
+
+![](assets/img/source-as-local-job-menu.png)
+]
+
+.w-50.tc[
+Configure Job Settings
+
+![](assets/img/source-as-local-job-dialog.png)
+]
+]
+
+???
+
+- Default settings
+- Return results to environment
+- Watch progress in the console
+- Use objects from global env
+
 ---
 
-- Restart your R Session
+# .orange[Let It Go...]
 
-    - `Command + Shift + F10`
-    - `Ctrl + Shift + F10`
-    
-- Run code up to here
+.w-50.tc.pb4.pt2.ph3.fl[
+.orange.f4[Restart R Session]
 
-    - R Script `Cmd/Ctrl + Opt/Alt + B` 
-    - Rmd `Cmd/Ctrl + Opt/Alt + P`
+&lt;kbd&gt;Cmd&lt;/kbd&gt; + &lt;kbd&gt;Shift&lt;/kbd&gt; + &lt;kbd&gt;0&lt;/kbd&gt;
 
-- Always start with a blank slate
-    
-    - `usethis::use_blank_slate()`
-    - https://rstats.wtf/save-source.html
-    - Go into settings to show this ...
-    
+&lt;kbd&gt;Ctrl&lt;/kbd&gt; + &lt;kbd&gt;Shift&lt;/kbd&gt; + &lt;kbd&gt;F10&lt;/kbd&gt;
+]
+
+--
+
+.w-50.tc.pb4.pt2.ph3.fl[
+.blue.f4[Run Up To Here]
+
+.code.bg-yellow.white.pv1.ph2.mr3[R] &lt;kbd&gt;Cmd/Ctrl&lt;/kbd&gt; + &lt;kbd&gt;Opt/Alt&lt;/kbd&gt; + &lt;kbd&gt;B&lt;/kbd&gt;
+
+.code.bg-pink.white.pv1.ph2.mr3[Rmd] &lt;kbd&gt;Cmd/Ctrl&lt;/kbd&gt; + &lt;kbd&gt;Opt/Alt&lt;/kbd&gt; + &lt;kbd&gt;P&lt;/kbd&gt;
+]
+
+--
+
+.w-50.mh-auto.tc[
+.green-dark.f4[Always start with a blank slate]
+
+`usethis::use_blank_slate()`
+
+https://rstats.wtf/save-source.html
+
+🎛 Global/Project Settings
+]
+
 ---
 
 # Use Projects
@@ -345,22 +496,34 @@ layout: false
 
 - [Why should I use the `here` package](https://malco.io/2018/11/05/why-should-i-use-the-here-package-when-i-m-already-using-projects/), Malcom Barrett
 
-- [Use Alfred to launch projects](https://twitter.com/hadleywickham/status/968624630276804608)
+- [Use Alfred to launch projects](https://twitter.com/hadleywickham/status/968624630276804608), Hadley Wickham
+
+--
+
+.mt5[
+![](assets/img/too-many-r-projects.jpeg)
+]
 
 ---
 
-# Poke around settings
+# .green-dark[Decorate RStudio]
+
+🎛  There are **many** options to check and adjust in .ba.br2.bw1.b--light-gray.ph1.shadow-3[Global Options]
+
+#### Code &gt; Display
+
+--
 
 .w-50.fl[
-- Pane Layout
+#### Appearance
 
-- Code &gt; Display
-
-- Appearance
-
-    - Fonts: [hasklig](https://github.com/i-tu/Hasklig/)
-    - Themes
+- Fonts
+    - Like ligatures? Try [hasklig](https://github.com/i-tu/Hasklig/)
+    
+- Themes
 ]
+
+--
     
 .fr[
 #### Hasklig
@@ -372,9 +535,13 @@ layout: false
 
 ---
 
-# Themes
+# .green-dark[Themes]
+
+#### A collection of many RStudio themes
 
 [garrickadenbuie.com/project/rsthemes/](https://www.garrickadenbuie.com/project/rsthemes/)
+
+#### Install and try themes
 
 
 ```r
@@ -387,64 +554,108 @@ rsthemes::try_rsthemes()
 
 ---
 
-# rsthemes addins
+# .green-dark[rsthemes addins]
 
-- Toggle Dark/Light
+.center[
+![](assets/img/addins-menu.png)
 
-- Auto choose dark/light
+🌇 Toggle Dark Mode
 
-- Choose next favorite
+🌙 Auto Choose Dark or Light Theme
+
+❤️ Next Favorite Theme
+]
 
 ---
 
-# Assign shortcuts to addins
+# .green-dark[Assign shortcuts to addins]
+
+.flex[
+.w-50[
+![](assets/img/keyboard-shortcuts-modify.png)
+]
+
+.w-50[
+.b[Toggle Dark/Light]
 
 &lt;kbd&gt;Ctrl&lt;/kbd&gt; + &lt;kbd&gt;Option&lt;/kbd&gt; + &lt;kbd&gt;D&lt;/kbd&gt;
 
+.b[Next Favorite Theme]
+
 &lt;kbd&gt;Ctrl&lt;/kbd&gt; + &lt;kbd&gt;Option&lt;/kbd&gt; + &lt;kbd&gt;N&lt;/kbd&gt;
+]
+]
+
 
 ---
 
 # Keyboard Shortcuts
 
+.flex.flex-wrap[
+.w-50[
+![](assets/img/keyboard-shortcuts-help.png)
+]
+
+.w-50[
+#### Reference
+
 - Tools &gt; Keyboard Shortcuts Help
 
 - [RStudio IDE Cheat Sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/rstudio-ide.pdf)
 
-- Take 3 minutes and find a new shortcut to try this week
+.mt5[
+#### .green-dark[Your Turn]
+]
 
-<div class="countdown" id="timer_5fb4517b" style="right:0;bottom:0;" data-warnwhen="0">
+Take 3 minutes to create new shortcuts for
+
+- Find and Add Next
+
+- Find and Select All
+]
+]
+
+
+<div class="countdown" id="timer_5fb4a7d2" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
 ---
 
-# Command Palette
+## Coming Soon to an RStudio Near You
 
-New in RStudio 1.4 along with a few other awesome features
+New in **RStudio 1.4** along with a few other awesome features
 
-- command palette
-- rainbow parens
-- visual markdown
-- new source column
+⭐ Command Palette
 
-[RStudio Preview](https://rstudio.com/products/rstudio/download/preview/)
+🌈 Rainbow Parens
+
+👓 Visual Markdown
+
+🍱 New Source Column
+
+
+💾 [RStudio Preview](https://rstudio.com/products/rstudio/download/preview/)
 
 ---
 
 # Code Style
 
-Take an example that needs styling...
+- Jump to `code_style.R`
 
-- [styler](https://www.notion.so/styler-8121522005bb4917ba65c654a22799b7)
+- Use the [styler](https://styler.r-lib.org/) package for magically clean code
+
+--
 
 - Use `identity()` or `I()` to walk through pipe steps
 
-- Realize code is out of place and move up/down to reorganize
+- Move code up/down to reorganize
 
 - Add new lines and fix indentation: &lt;kbd&gt;Ctrl&lt;/kbd&gt; + &lt;kbd&gt;I&lt;/kbd&gt;
 
-- Let your code breathe vertically! Change order of selection in a `select()`
+- Let your code breathe vertically! 
+    - Change order of selection in a `select()`
+    
     - Use multiple cursors by &lt;kbd&gt;Cmd&lt;/kbd&gt; + &lt;kbd&gt;Opt&lt;/kbd&gt; + &lt;click&gt;&lt;/click&gt;
 
 ???
@@ -493,7 +704,7 @@ If code is more vertical, alignment is easier.
 
 # Addins
 
-[addinslist](https://github.com/daattali/addinslist) is a great resource
+[addinslist](https://github.com/daattali/addinslist) — An addin to .b[find] and .b[install] great addins
 
 #### Some Favorites
 
@@ -513,29 +724,76 @@ If code is more vertical, alignment is easier.
 
 # Snippets
 
+.ba.br2.bw1.b--light-gray.ph1.shadow-3[Global Options] &amp;rarr; Code &amp;rarr; Edit Snippets
 
+--
+
+.b[Snippet Syntax]
+
+```
+snippet s3generic
+	${1:generic} &lt;- function(x, ...) {
+	  UseMethod("${1:generic}", x)
+	}
+
+	${1:generic}.${2:method} &lt;- function(x, ...) {
+	  ${0}
+	}
+```
+
+--
+
+.b.blue[Try this one:] `shinymod`
 
 ---
 
 # Infinite Moon Reader
 
-Use **Infinite Moon Reader** to automatically recompile an R Markdown document
+Automatically renders an R Markdown document whenever you save 💾
 
-demo: `docs/try/infinite_moon_reader.Rmd`
+1. Jump to `docs/try/infinite_moon_reader.Rmd`
+
+1. Edit the document and press save to see it in action
+
+???
+
+- Show extract variable
+- Show insert new chunk
+- Show insert new chunk within a chunk
 
 ---
 
 # Clean Tuition
 
-demo: `R/clean_tuition.R`
+Jump to `R/clean_tuition.R`
 
-- Review techniques to re-style the code, figure out what's going on
+Let's review together, refactoring and restyling the code
 
-- Make a function to `tidy_tuition()`
-    - Use reload function shortcut
-    - Use `browser()`
-    - Insert roxygen skeleton
-    - Rename in scope
+Make a function to `tidy_tuition()`, on the way we may learn how to
+
+- Run current function definition
+- Use `browser()`
+- Insert roxygen skeleton
+- Rename in scope
+
+---
+class: center middle
+
+# Resources for learning more
+
+.f3[
+[RStudio IDE Cheat Sheet](https://github.com/rstudio/cheatsheets/blob/master/rstudio-ide.pdf)
+
+[&amp;commat;rstudiotips](https://twitter.com/rstudiotips)
+]
+
+--
+
+.w-100.tc.absolute.bottom-2.left-0[
+[&amp;commat;grrrck](https://twitter.com/grrrck) .ph2[&amp;middot;]
+[&amp;commat;gvwilson](https://twitter.com/gvwilson)
+]
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
