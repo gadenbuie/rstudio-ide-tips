@@ -6,7 +6,7 @@ author:
   - Mario Ferrini
   - Greg Wilson
 institute: "RStudio, PBC"
-date: '`r strftime(Sys.time(), "%B %d, %Y")`'
+date: November 18, 2020
 output:
   xaringan::moon_reader:
     lib_dir: assets/libs
